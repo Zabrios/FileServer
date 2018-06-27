@@ -15,6 +15,7 @@ namespace FileServer.Presentation.WinSite
         public AlumnoForm()
         {
             InitializeComponent();
+            //this.cboPath.Properties.TextEditStyle = DisableTextEditor;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace FileServer.Presentation.WinSite
+﻿using System.Windows.Forms;
+
+namespace FileServer.Presentation.WinSite
 {
     partial class AlumnoForm
     {
@@ -37,39 +39,41 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblApellidos = new System.Windows.Forms.Label();
             this.lblDNI = new System.Windows.Forms.Label();
+            this.cboPath = new System.Windows.Forms.ComboBox();
+            this.lblcbo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(93, 22);
+            this.txtID.Location = new System.Drawing.Point(149, 22);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(100, 20);
             this.txtID.TabIndex = 0;
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(93, 57);
+            this.txtNombre.Location = new System.Drawing.Point(149, 57);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 1;
             // 
             // txtApellidos
             // 
-            this.txtApellidos.Location = new System.Drawing.Point(93, 96);
+            this.txtApellidos.Location = new System.Drawing.Point(149, 96);
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(100, 20);
             this.txtApellidos.TabIndex = 2;
             // 
             // txtDNI
             // 
-            this.txtDNI.Location = new System.Drawing.Point(93, 134);
+            this.txtDNI.Location = new System.Drawing.Point(149, 134);
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(100, 20);
             this.txtDNI.TabIndex = 3;
             // 
             // btAdd
             // 
-            this.btAdd.Location = new System.Drawing.Point(93, 178);
+            this.btAdd.Location = new System.Drawing.Point(190, 183);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(100, 34);
             this.btAdd.TabIndex = 4;
@@ -79,7 +83,7 @@
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(25, 25);
+            this.lblId.Location = new System.Drawing.Point(103, 25);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(21, 13);
             this.lblId.TabIndex = 5;
@@ -88,7 +92,7 @@
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(25, 60);
+            this.lblNombre.Location = new System.Drawing.Point(77, 60);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(47, 13);
             this.lblNombre.TabIndex = 6;
@@ -97,7 +101,7 @@
             // lblApellidos
             // 
             this.lblApellidos.AutoSize = true;
-            this.lblApellidos.Location = new System.Drawing.Point(25, 99);
+            this.lblApellidos.Location = new System.Drawing.Point(72, 99);
             this.lblApellidos.Name = "lblApellidos";
             this.lblApellidos.Size = new System.Drawing.Size(52, 13);
             this.lblApellidos.TabIndex = 7;
@@ -106,17 +110,39 @@
             // lblDNI
             // 
             this.lblDNI.AutoSize = true;
-            this.lblDNI.Location = new System.Drawing.Point(25, 137);
+            this.lblDNI.Location = new System.Drawing.Point(95, 137);
             this.lblDNI.Name = "lblDNI";
             this.lblDNI.Size = new System.Drawing.Size(29, 13);
             this.lblDNI.TabIndex = 8;
             this.lblDNI.Text = "DNI:";
             // 
+            // cboPath
+            // 
+            this.cboPath.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPath.Items.AddRange(new object[] {
+            "App.config path",
+            "Environment variable path"});
+            this.cboPath.Location = new System.Drawing.Point(30, 191);
+            this.cboPath.Name = "cboPath";
+            this.cboPath.Size = new System.Drawing.Size(145, 21);
+            this.cboPath.TabIndex = 9;
+            // 
+            // lblcbo
+            // 
+            this.lblcbo.AutoSize = true;
+            this.lblcbo.Location = new System.Drawing.Point(65, 175);
+            this.lblcbo.Name = "lblcbo";
+            this.lblcbo.Size = new System.Drawing.Size(59, 13);
+            this.lblcbo.TabIndex = 10;
+            this.lblcbo.Text = "Save path:";
+            // 
             // AlumnoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(269, 238);
+            this.ClientSize = new System.Drawing.Size(337, 245);
+            this.Controls.Add(this.lblcbo);
+            this.Controls.Add(this.cboPath);
             this.Controls.Add(this.lblDNI);
             this.Controls.Add(this.lblApellidos);
             this.Controls.Add(this.lblNombre);
@@ -144,6 +170,8 @@
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblApellidos;
         private System.Windows.Forms.Label lblDNI;
+        private System.Windows.Forms.ComboBox cboPath;
+        private System.Windows.Forms.Label lblcbo;
     }
 }
 
