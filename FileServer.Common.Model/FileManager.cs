@@ -8,15 +8,16 @@ using System.Threading.Tasks;
 
 namespace FileServer.Common.Model
 {
-    public class JSONParser 
+    public class FileManager 
     {
-        public static void CreateJSONFile(string path)
+        public static void CreateJSONFileIfNonexistent(string path)
         {
             if (!JSONFileExists(path))
             {
                 Console.WriteLine(path);
                 StreamWriter file = new StreamWriter(path);
-                file = File.CreateText(path);
+                var file2 = File.CreateText(path);
+                file2.Close();
             }
         }
 
@@ -34,7 +35,9 @@ namespace FileServer.Common.Model
                     filePath = ConfigurationManager.AppSettings["Path"];
                     break;
                 case 1:
-                    filePath = Environment.ExpandEnvironmentVariables(@"%VUELING_HOME%\alumno.json");
+                    var environmentPath = Environment.GetEnvironmentVariable("VUELING_HOME");
+                    filePath = Path.Combine(environmentPath, ConfigurationManager.AppSettings["fileName"]);
+                    //filePath = Environment.ExpandEnvironmentVariables(@"%VUELING_HOME%\alumno.json");
                     break;
                 default:
                     filePath = ConfigurationManager.AppSettings["Path"];

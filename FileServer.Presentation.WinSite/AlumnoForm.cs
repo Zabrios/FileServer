@@ -23,7 +23,7 @@ namespace FileServer.Presentation.WinSite
         private void btAdd_Click(object sender, EventArgs e)
         {
             //string filePath;
-            Common.Model.JSONParser.CreateJSONFile(Common.Model.JSONParser.PathSelector(cboPath.SelectedIndex));
+            Common.Model.FileManager.CreateJSONFileIfNonexistent(Common.Model.FileManager.PathSelector(cboPath.SelectedIndex));
         }
     }
 }
