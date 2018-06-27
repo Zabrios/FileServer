@@ -16,7 +16,7 @@ namespace FileServer.Presentation.WinSite
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Alumno());
+            Application.Run(new AlumnoForm());
         }
     }
 }

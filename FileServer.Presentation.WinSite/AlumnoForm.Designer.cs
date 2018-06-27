@@ -1,6 +1,6 @@
 ﻿namespace FileServer.Presentation.WinSite
 {
-    partial class Alumno
+    partial class AlumnoForm
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -112,7 +112,7 @@
             this.lblDNI.TabIndex = 8;
             this.lblDNI.Text = "DNI:";
             // 
-            // Alumno
+            // AlumnoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -126,8 +126,8 @@
             this.Controls.Add(this.txtApellidos);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtID);
-            this.Name = "Alumno";
-            this.Text = "Form1";
+            this.Name = "AlumnoForm";
+            this.Text = "Alumno";
             this.ResumeLayout(false);
             this.PerformLayout();
 

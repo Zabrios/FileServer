@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FileServer.Presentation.WinSite
 {
-    public partial class Alumno : Form
+    public partial class AlumnoForm : Form
     {
-        public Alumno()
+        public AlumnoForm()
         {
             InitializeComponent();
         }
