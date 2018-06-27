@@ -9,6 +9,7 @@ namespace FileServer.Infrastucture.Repository
 {
     public interface IAlumnoRepository
     {
+        // should return Alumno object instead of a bool
         bool Add(Alumno alumno);
     }
 }
