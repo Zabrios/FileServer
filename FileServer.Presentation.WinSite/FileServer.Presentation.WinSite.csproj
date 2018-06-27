@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -77,6 +78,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileServer.Common.Model\FileServer.Common.Model.csproj">
+      <Project>{6584a2bb-512a-48d2-9711-849ebc7dbd71}</Project>
+      <Name>FileServer.Common.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileServer.Infrastucture.Repository\FileServer.Infrastucture.Repository.csproj">
+      <Project>{391fc1f7-0bd6-4ba9-b5a0-6d10f4ee93cd}</Project>
+      <Name>FileServer.Infrastucture.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

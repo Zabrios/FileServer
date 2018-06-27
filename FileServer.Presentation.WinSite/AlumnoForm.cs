@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace FileServer.Presentation.WinSite
 {
@@ -15,7 +16,14 @@ namespace FileServer.Presentation.WinSite
         public AlumnoForm()
         {
             InitializeComponent();
+            cboPath.SelectedIndex = 0;
             //this.cboPath.Properties.TextEditStyle = DisableTextEditor;
+        }
+
+        private void btAdd_Click(object sender, EventArgs e)
+        {
+            //string filePath;
+            Common.Model.JSONParser.CreateJSONFile(Common.Model.JSONParser.PathSelector(cboPath.SelectedIndex));
         }
     }
 }

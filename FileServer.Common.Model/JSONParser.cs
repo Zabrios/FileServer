@@ -1,26 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FileServer.Common.Model
 {
-    public class JSONParser
+    public class JSONParser 
     {
-        public void CreateJSONFile(string path)
+        public static void CreateJSONFile(string path)
         {
-            StreamWriter file = new StreamWriter(path, true);
             if (!JSONFileExists(path))
             {
+                Console.WriteLine(path);
+                StreamWriter file = new StreamWriter(path);
                 file = File.CreateText(path);
             }
         }
 
-        public bool JSONFileExists(string path)
+        public static bool JSONFileExists(string path)
         {
             return File.Exists(path);
+        }
+
+        public static string PathSelector (int comboIndex)
+        {
+            string filePath;
+            switch (comboIndex)
+            {
+                case 0:
+                    filePath = ConfigurationManager.AppSettings["Path"];
+                    break;
+                case 1:
+                    filePath = Environment.ExpandEnvironmentVariables(@"%VUELING_HOME%\alumno.json");
+                    break;
+                default:
+                    filePath = ConfigurationManager.AppSettings["Path"];
+                    break;
+            }
+            return filePath;
         }
     }
 }

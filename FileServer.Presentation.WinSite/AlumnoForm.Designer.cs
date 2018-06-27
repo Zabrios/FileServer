@@ -79,6 +79,7 @@ namespace FileServer.Presentation.WinSite
             this.btAdd.TabIndex = 4;
             this.btAdd.Text = "Add";
             this.btAdd.UseVisualStyleBackColor = true;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
             // 
             // lblId
             // 
