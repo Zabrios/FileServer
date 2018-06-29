@@ -15,7 +15,7 @@ namespace FileServer.Common.Model
             if (!JSONFileExists(path))
             {
                 Console.WriteLine(path);
-                StreamWriter file = new StreamWriter(path);
+                //StreamWriter file = new StreamWriter(path);
                 var file2 = File.CreateText(path);
                 file2.Close();
             }
