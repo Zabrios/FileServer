@@ -40,8 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAlumnoRepository.cs" />
+    <Compile Include="Interfaces\IAlumnoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AlumnoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FileServer.Common.Model\FileServer.Common.Model.csproj">
@@ -49,5 +50,6 @@
       <Name>FileServer.Common.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

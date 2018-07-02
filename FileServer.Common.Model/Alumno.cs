@@ -13,6 +13,14 @@ namespace FileServer.Common.Model
         public string Apellidos { get; set; }
         public string DNI { get; set; }
 
+        public Alumno(string id, string nombre, string apellidos, string dNI)
+        {
+            Id = id;
+            Nombre = nombre;
+            Apellidos = apellidos;
+            DNI = dNI;
+        }
+
         public override bool Equals(object obj)
         {
             Alumno alumno = obj as Alumno;
@@ -34,7 +42,17 @@ namespace FileServer.Common.Model
 
         public override int GetHashCode()
         {
-            return this.Id.GetHashCode() ^ this.Nombre.GetHashCode() ^ this.Apellidos.GetHashCode() ^ this.DNI.GetHashCode();
+            var hashCode = -875667990;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Id);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nombre);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Apellidos);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(DNI);
+            return hashCode;
         }
+
+        //public override int GetHashCode()
+        //{
+        //    return this.Id.GetHashCode() ^ this.Nombre.GetHashCode() ^ this.Apellidos.GetHashCode() ^ this.DNI.GetHashCode();
+        //}
     }
 }
