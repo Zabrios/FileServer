@@ -6,27 +6,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileServer.Common.Model
+namespace FileServer.Infrastucture.Repository
 {
-    public class FileManager 
+    public class FileManager : IFileManager
     {
-        public static void CreateJSONFileIfNonexistent(string path)
+        public void CreateJSONFileIfNonexistent(string path)
         {
             if (!JSONFileExists(path))
             {
                 Console.WriteLine(path);
-                //StreamWriter file = new StreamWriter(path);
-                var file2 = File.CreateText(path);
-                file2.Close();
+                var file = File.CreateText(path);
+                //file.WriteLine("[]");
+                file.Close();
             }
         }
 
-        public static bool JSONFileExists(string path)
+        public bool JSONFileExists(string path)
         {
             return File.Exists(path);
         }
 
-        public static string PathSelector (int comboIndex)
+        public string PathSelector(int comboIndex)
         {
             string filePath;
             switch (comboIndex)
@@ -44,6 +44,32 @@ namespace FileServer.Common.Model
                     break;
             }
             return filePath;
+        }
+
+        public void WriteToJson(string path, string jsonData)
+        {
+            try
+            {
+                File.WriteAllText(path, jsonData);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string RetrieveJSONData(string path)
+        {
+            try
+            {
+                var jsonData = File.ReadAllText(path);
+                Console.WriteLine(jsonData);
+                return jsonData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

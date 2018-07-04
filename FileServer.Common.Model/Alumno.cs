@@ -35,8 +35,7 @@ namespace FileServer.Common.Model
 
         public override string ToString()
         {
-            return string.Format(@"Id: {0}, Nombre: {1}, 
-                                   Apellidos: {2}, DNI: {3}",
+            return string.Format(@"Id: {0}, Nombre: {1}, Apellidos: {2}, DNI: {3}",
                                    Id, Nombre, Apellidos, DNI);
         }
 
