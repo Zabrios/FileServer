@@ -26,7 +26,7 @@ namespace FileServer.Infrastucture.Repository
                 jsonNodes = new List<Alumno>();
             }
             jsonNodes.Add(alumno);
-            var resultJSONList = JsonConvert.SerializeObject(jsonNodes);
+            var resultJSONList = JsonConvert.SerializeObject(jsonNodes, Formatting.Indented);
             fileManager.WriteToJson(path, resultJSONList);
             return JsonConvert.DeserializeObject<List<Alumno>>(fileManager.RetrieveJSONData(path)).Last();
             //}
