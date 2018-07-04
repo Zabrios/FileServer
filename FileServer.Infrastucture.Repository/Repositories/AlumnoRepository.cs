@@ -16,26 +16,20 @@ namespace FileServer.Infrastucture.Repository
         {
             FileManager fileManager = new FileManager();
             List<Alumno> jsonNodes = null;
+
             fileManager.CreateJSONFileIfNonexistent(path);
-            //if (fileManager.JSONFileExists(path))
-            //{
             var data = fileManager.RetrieveJSONData(path);
+
             jsonNodes = JsonConvert.DeserializeObject<List<Alumno>>(data);
             if (jsonNodes == null)
             {
                 jsonNodes = new List<Alumno>();
             }
             jsonNodes.Add(alumno);
+
             var resultJSONList = JsonConvert.SerializeObject(jsonNodes, Formatting.Indented);
             fileManager.WriteToJson(path, resultJSONList);
             return JsonConvert.DeserializeObject<List<Alumno>>(fileManager.RetrieveJSONData(path)).Last();
-            //}
-            //else
-            //{
-            //    var resultJSON = JsonConvert.SerializeObject(alumno);
-            //    fileManager.WriteToJson(path, resultJSON);
-            //    return JsonConvert.DeserializeObject<Alumno>(fileManager.RetrieveJSONData(path));
-            //}
         }
     }
 }
