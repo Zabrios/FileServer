@@ -29,26 +29,27 @@ namespace FileServer.Infrastucture.Repository
 
             fileManager.CreateJSONFileIfNonexistent(path);
             var data = fileManager.RetrieveJSONData(path);
-            log.Debug("Recuperando lista de objetos JSON.");
             try
             {
+                log.Debug("Recuperando lista de objetos JSON.");
                 jsonNodes = JsonConvert.DeserializeObject<List<Alumno>>(data);
                 if (jsonNodes == null)
                 {
                     log.Debug("Fichero vacío. No se han recuperado alumnos. Inicializando lista nueva.");
                     jsonNodes = new List<Alumno>();
                 }
+
+                jsonNodes.Add(alumno);
+
+                var resultJSONList = JsonConvert.SerializeObject(jsonNodes, Formatting.Indented);
+                fileManager.WriteToJson(path, resultJSONList);
+                return JsonConvert.DeserializeObject<List<Alumno>>(fileManager.RetrieveJSONData(path)).Last();
             }
             catch (Exception ex)
             {
                 log.Error(ex);
                 throw ex;
             }
-            jsonNodes.Add(alumno);
-
-            var resultJSONList = JsonConvert.SerializeObject(jsonNodes, Formatting.Indented);
-            fileManager.WriteToJson(path, resultJSONList);
-            return JsonConvert.DeserializeObject<List<Alumno>>(fileManager.RetrieveJSONData(path)).Last();
         }
     }
 }
