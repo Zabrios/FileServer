@@ -28,10 +28,11 @@ namespace FileServer.Infrastucture.Repository
 
             fileManager.CreateJSONFileIfNonexistent(path);
             var data = fileManager.RetrieveJSONData(path);
-
+            log.Debug("Recuperando lista de objetos JSON.");
             jsonNodes = JsonConvert.DeserializeObject<List<Alumno>>(data);
             if (jsonNodes == null)
             {
+                log.Debug("Fichero vacío. No se han recuperado alumnos. Inicializando lista nueva.");
                 jsonNodes = new List<Alumno>();
             }
             jsonNodes.Add(alumno);
