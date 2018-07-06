@@ -47,16 +47,16 @@ namespace FileServer.Infrastucture.Repository
             switch (comboIndex)
             {
                 case 0:
-                    filePath = ConfigurationManager.AppSettings["Path"];
+                    //filePath = Path.Combine(environmentPath, ConfigurationManager.AppSettings["fileName"]);
+                    filePath = ConfigurationManager.AppSettings["Path"] + ConfigurationManager.AppSettings["fileName"];
                     break;
                 case 1:
-                    var environmentPath = Environment.GetEnvironmentVariable("VUELING_HOME");
+                    //var environmentPath = Environment.GetEnvironmentVariable("VUELING_HOME");
                     filePath = Environment.ExpandEnvironmentVariables(ConfigurationManager.AppSettings["environmentPathJson"]);
-                    //filePath = testPath;
-                    //filePath = Path.Combine(environmentPath, ConfigurationManager.AppSettings["fileName"]);
                     break;
                 default:
-                    filePath = ConfigurationManager.AppSettings["Path"];
+                    filePath = ConfigurationManager.AppSettings["Path"] + ConfigurationManager.AppSettings["fileName"];
+                    //filePath = ConfigurationManager.AppSettings["Path"];
                     break;
             }
             return filePath;
