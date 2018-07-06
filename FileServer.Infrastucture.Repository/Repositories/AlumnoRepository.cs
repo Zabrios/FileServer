@@ -21,19 +21,28 @@ namespace FileServer.Infrastucture.Repository
 
         public Alumno Add(Alumno alumno, string path)
         {
-            log.Debug("alumno " + alumno.ToString());
-            log.Debug("path = " + path);
             FileManager fileManager = new FileManager();
             List<Alumno> jsonNodes = null;
+
+            log.Debug("alumno " + alumno.ToString());
+            log.Debug("path = " + path);
 
             fileManager.CreateJSONFileIfNonexistent(path);
             var data = fileManager.RetrieveJSONData(path);
             log.Debug("Recuperando lista de objetos JSON.");
-            jsonNodes = JsonConvert.DeserializeObject<List<Alumno>>(data);
-            if (jsonNodes == null)
+            try
             {
-                log.Debug("Fichero vacío. No se han recuperado alumnos. Inicializando lista nueva.");
-                jsonNodes = new List<Alumno>();
+                jsonNodes = JsonConvert.DeserializeObject<List<Alumno>>(data);
+                if (jsonNodes == null)
+                {
+                    log.Debug("Fichero vacío. No se han recuperado alumnos. Inicializando lista nueva.");
+                    jsonNodes = new List<Alumno>();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+                throw ex;
             }
             jsonNodes.Add(alumno);
 
