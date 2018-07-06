@@ -11,7 +11,7 @@ namespace FileServer.Infrastucture.Repository
     public class FileManager 
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger
-                (typeof(FileManager));
+                (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public static string FilePath;
 
         /// <summary>
@@ -29,7 +29,23 @@ namespace FileServer.Infrastucture.Repository
                         file.Dispose();
                     }
                 }
-                catch (Exception ex)
+                catch (UnauthorizedAccessException ex)
+                {
+                    throw ex;
+                }
+                catch (ArgumentException ex)
+                {
+                    throw ex;
+                }
+                catch (DirectoryNotFoundException ex)
+                {
+                    throw ex;
+                }
+                catch (IOException ex)
+                {
+                    throw ex;
+                }
+                catch (System.Security.SecurityException ex)
                 {
                     throw ex;
                 }

@@ -18,7 +18,7 @@ namespace FileServer.Presentation.WinSite
     public partial class AlumnoForm : Form
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger
-                (typeof(AlumnoForm));
+                (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public AlumnoForm()
         {
             InitializeComponent();

@@ -14,7 +14,7 @@ namespace FileServer.Infrastucture.Repository
     public class AlumnoRepository : IAlumnoRepository
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger
-        (typeof(AlumnoRepository));
+        (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public AlumnoRepository()
         {
