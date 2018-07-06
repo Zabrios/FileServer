@@ -23,8 +23,11 @@ namespace FileServer.Infrastucture.Repository
             {
                 try
                 {
-                    var file = File.CreateText(path);
-                    file.Dispose();
+                    using (StreamWriter file = new StreamWriter(path, true))
+                    {
+                        //file.CreateText(path);
+                        file.Dispose();
+                    }
                 }
                 catch (Exception ex)
                 {
