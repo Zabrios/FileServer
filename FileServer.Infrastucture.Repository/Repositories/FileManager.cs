@@ -39,8 +39,9 @@ namespace FileServer.Infrastucture.Repository
                     break;
                 case 1:
                     var environmentPath = Environment.GetEnvironmentVariable("VUELING_HOME");
-                    filePath = Path.Combine(environmentPath, ConfigurationManager.AppSettings["fileName"]);
-                    //filePath = Environment.ExpandEnvironmentVariables(@"%VUELING_HOME%\alumno.json");
+                    var testPath = Environment.ExpandEnvironmentVariables(ConfigurationManager.AppSettings["environmentPathJson"]);
+                    filePath = testPath;
+                    //filePath = Path.Combine(environmentPath, ConfigurationManager.AppSettings["fileName"]);
                     break;
                 default:
                     filePath = ConfigurationManager.AppSettings["Path"];
