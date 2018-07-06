@@ -10,11 +10,14 @@ namespace FileServer.Infrastucture.Repository
 {
     public class FileManager : IFileManager
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
+                (typeof(FileManager));
+
         public void CreateJSONFileIfNonexistent(string path)
         {
             if (!JSONFileExists(path))
             {
-                Console.WriteLine(path);
+                //Console.WriteLine(path);
                 var file = File.CreateText(path);
                 //file.WriteLine("[]");
                 file.Close();

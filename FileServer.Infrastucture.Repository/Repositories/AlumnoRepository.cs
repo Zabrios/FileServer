@@ -12,8 +12,17 @@ namespace FileServer.Infrastucture.Repository
 {
     public class AlumnoRepository : IAlumnoRepository
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
+        (typeof(AlumnoRepository));
+        public AlumnoRepository()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+        }
+
         public Alumno Add(Alumno alumno, string path)
         {
+            log.Debug("alumno " + alumno.ToString());
+            log.Debug("path = " + path);
             FileManager fileManager = new FileManager();
             List<Alumno> jsonNodes = null;
 

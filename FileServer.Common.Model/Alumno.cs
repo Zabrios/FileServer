@@ -48,10 +48,5 @@ namespace FileServer.Common.Model
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(DNI);
             return hashCode;
         }
-
-        //public override int GetHashCode()
-        //{
-        //    return this.Id.GetHashCode() ^ this.Nombre.GetHashCode() ^ this.Apellidos.GetHashCode() ^ this.DNI.GetHashCode();
-        //}
     }
 }
