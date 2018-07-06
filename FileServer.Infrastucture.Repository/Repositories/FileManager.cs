@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace FileServer.Infrastucture.Repository
 {
-    public class FileManager : IFileManager
+    public class FileManager 
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger
                 (typeof(FileManager));
+        public static string FilePath;
 
         /// <summary>
         /// Creates the json file if nonexistent.
         /// </summary>
         /// <param name="path">The path.</param>
-        public void CreateJSONFileIfNonexistent(string path)
+        public static void CreateJSONFileIfNonexistent()
         {
-            if (!JSONFileExists(path))
+            if (!JSONFileExists())
             {
                 try
                 {
-                    using (StreamWriter file = new StreamWriter(path, true))
+                    using (StreamWriter file = new StreamWriter(FilePath, true))
                     {
-                        //file.CreateText(path);
                         file.Dispose();
                     }
                 }
@@ -36,37 +36,37 @@ namespace FileServer.Infrastucture.Repository
             }
         }
 
-        public bool JSONFileExists(string path)
+        public static bool JSONFileExists()
         {
-            return File.Exists(path);
+            return File.Exists(FilePath);
         }
 
-        public string PathSelector(int comboIndex)
+        public static string PathSelector(int comboIndex)
         {
-            string filePath;
+            //string filePath;
             switch (comboIndex)
             {
                 case 0:
                     //filePath = Path.Combine(environmentPath, ConfigurationManager.AppSettings["fileName"]);
-                    filePath = ConfigurationManager.AppSettings["Path"] + ConfigurationManager.AppSettings["fileName"];
+                    FilePath = ConfigurationManager.AppSettings["Path"] + ConfigurationManager.AppSettings["fileName"];
                     break;
                 case 1:
                     //var environmentPath = Environment.GetEnvironmentVariable("VUELING_HOME");
-                    filePath = Environment.ExpandEnvironmentVariables(ConfigurationManager.AppSettings["environmentPathJson"]);
+                    FilePath = Environment.ExpandEnvironmentVariables(ConfigurationManager.AppSettings["environmentPathJson"]);
                     break;
                 default:
-                    filePath = ConfigurationManager.AppSettings["Path"] + ConfigurationManager.AppSettings["fileName"];
+                    FilePath = ConfigurationManager.AppSettings["Path"] + ConfigurationManager.AppSettings["fileName"];
                     //filePath = ConfigurationManager.AppSettings["Path"];
                     break;
             }
-            return filePath;
+            return FilePath;
         }
 
-        public void WriteToJson(string path, string jsonData)
+        public static void WriteToJson(string jsonData)
         {
             try
             {
-                File.WriteAllText(path, jsonData);
+                File.WriteAllText(FilePath, jsonData);
             }
             catch (Exception ex)
             {
@@ -74,12 +74,11 @@ namespace FileServer.Infrastucture.Repository
             }
         }
 
-        public string RetrieveJSONData(string path)
+        public static string RetrieveJSONData()
         {
             try
             {
-                var jsonData = File.ReadAllText(path);
-                Console.WriteLine(jsonData);
+                var jsonData = File.ReadAllText(FilePath);
                 return jsonData;
             }
             catch (Exception ex)

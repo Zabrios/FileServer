@@ -22,7 +22,7 @@ namespace FileServer.Presentation.WinSite
         public AlumnoForm()
         {
             InitializeComponent();
-            log4net.Config.XmlConfigurator.Configure();
+            XmlConfigurator.Configure();
             cboPath.SelectedIndex = 0;
         }
 
@@ -34,13 +34,11 @@ namespace FileServer.Presentation.WinSite
                       txtID.Text, txtNombre.Text, txtApellidos.Text, txtDNI.Text));
 
             var alumnoRepo = new AlumnoRepository();
-            var fileManager = new FileManager();
-            var selectedPath = fileManager.PathSelector(cboPath.SelectedIndex);
-
-            log.Debug("selectedPath = " + selectedPath);
+            FileManager.PathSelector(cboPath.SelectedIndex);
+            log.Debug("selectedPath = " + FileManager.FilePath);
 
             Alumno alumno = new Alumno(txtID.Text, txtNombre.Text, txtApellidos.Text, txtDNI.Text);
-            var alumnoRetorno = alumnoRepo.Add(alumno, selectedPath);
+            var alumnoRetorno = alumnoRepo.Add(alumno);
 
             log.Debug("Alumno retorno --> " + alumnoRetorno.ToString());
 
