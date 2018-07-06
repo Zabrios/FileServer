@@ -18,9 +18,15 @@ namespace FileServer.Infrastucture.Repository
             if (!JSONFileExists(path))
             {
                 //Console.WriteLine(path);
-                var file = File.CreateText(path);
-                //file.WriteLine("[]");
-                file.Close();
+                try
+                {
+                    var file = File.CreateText(path);
+                    file.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 
