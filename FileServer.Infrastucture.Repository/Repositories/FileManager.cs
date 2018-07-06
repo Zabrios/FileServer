@@ -13,15 +13,18 @@ namespace FileServer.Infrastucture.Repository
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger
                 (typeof(FileManager));
 
+        /// <summary>
+        /// Creates the json file if nonexistent.
+        /// </summary>
+        /// <param name="path">The path.</param>
         public void CreateJSONFileIfNonexistent(string path)
         {
             if (!JSONFileExists(path))
             {
-                //Console.WriteLine(path);
                 try
                 {
                     var file = File.CreateText(path);
-                    file.Close();
+                    file.Dispose();
                 }
                 catch (Exception ex)
                 {
