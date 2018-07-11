@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FileServer.Infrastucture.Repository
 {
-    public class FileManager 
+    public class FileManager
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger
                 (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -26,10 +26,7 @@ namespace FileServer.Infrastucture.Repository
             {
                 try
                 {
-                    using (StreamWriter file = new StreamWriter(FilePath, true))
-                    {
-                        file.Dispose();
-                    }
+                    using (StreamWriter file = new StreamWriter(FilePath, true)){}
                 }
                 catch (UnauthorizedAccessException ex)
                 {
