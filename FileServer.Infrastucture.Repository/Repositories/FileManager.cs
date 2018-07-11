@@ -13,6 +13,8 @@ namespace FileServer.Infrastucture.Repository
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger
                 (typeof(FileManager));
 
+        //public static fil
+
         /// <summary>
         /// Creates the json file if nonexistent.
         /// </summary>

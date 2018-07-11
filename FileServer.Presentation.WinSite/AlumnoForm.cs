@@ -28,6 +28,16 @@ namespace FileServer.Presentation.WinSite
 
         private void btAdd_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int p = 0;
+                var num = 5 / p;
+            }
+            catch(Exception ex)
+            {
+                LogManager.GetLogger("EmailLogger").Error(ex);
+
+            }
             //BasicConfigurator.Configure();
             log.Debug("Entering the btAdd_Click Method.");
             log.Debug(string.Format(@"Alumno --> ID = {0} | Nombre = {1} | Apellidos = {2} | DNI = {3}",
