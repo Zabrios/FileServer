@@ -15,6 +15,8 @@ namespace FileServer.Infrastucture.Repository
         public static string FilePath;
         public static string FileExtension;
 
+        //public static fil
+
         /// <summary>
         /// Creates the json file if nonexistent.
         /// </summary>
@@ -25,10 +27,7 @@ namespace FileServer.Infrastucture.Repository
             {
                 try
                 {
-                    using (StreamWriter file = new StreamWriter(FilePath, true))
-                    {
-                        file.Dispose();
-                    }
+                    using (StreamWriter file = new StreamWriter(FilePath, true)){}
                 }
                 catch (UnauthorizedAccessException ex)
                 {
