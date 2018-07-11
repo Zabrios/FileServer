@@ -7,28 +7,30 @@ using System.Text;
 using System.Threading.Tasks;
 using FileServer.Common.Model;
 using Newtonsoft.Json;
+using log4net;
 
 namespace FileServer.Infrastucture.Repository
 {
     public class AlumnoRepository : IAlumnoRepository
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger
-        (typeof(AlumnoRepository));
+        (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public AlumnoRepository()
         {
             log4net.Config.XmlConfigurator.Configure();
         }
 
-        public Alumno Add(Alumno alumno, string path)
+        public Alumno Add(Alumno alumno)
         {
-            FileManager fileManager = new FileManager();
+            //FileManager fileManager = new FileManager();
             List<Alumno> jsonNodes = null;
 
             log.Debug("alumno " + alumno.ToString());
-            log.Debug("path = " + path);
+            log.Debug("path = " + FileManager.FilePath);
 
-            fileManager.CreateJSONFileIfNonexistent(path);
-            var data = fileManager.RetrieveJSONData(path);
+            FileManager.CreateJSONFileIfNonexistent();
+            var data = FileManager.RetrieveJSONData();
             try
             {
                 log.Debug("Recuperando lista de objetos JSON.");
@@ -42,8 +44,8 @@ namespace FileServer.Infrastucture.Repository
                 jsonNodes.Add(alumno);
 
                 var resultJSONList = JsonConvert.SerializeObject(jsonNodes, Formatting.Indented);
-                fileManager.WriteToJson(path, resultJSONList);
-                return JsonConvert.DeserializeObject<List<Alumno>>(fileManager.RetrieveJSONData(path)).Last();
+                FileManager.WriteToJson( resultJSONList);
+                return JsonConvert.DeserializeObject<List<Alumno>>(FileManager.RetrieveJSONData()).Last();
             }
             catch (Exception ex)
             {
