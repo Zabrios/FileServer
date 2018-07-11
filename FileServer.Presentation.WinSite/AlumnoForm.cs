@@ -1,6 +1,6 @@
 ﻿using System;
 using FileServer.Common.Model;
-using FileServer.Infrastucture.Repository;
+using FileServer.Infrastucture.Repository.Repositories;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using System.Configuration;
 using log4net;
 using log4net.Config;
+using FileServer.Infrastucture.Repository.Interfaces;
+using FileServer.Infrastucture.Repository;
 
 namespace FileServer.Presentation.WinSite
 {
@@ -19,22 +21,28 @@ namespace FileServer.Presentation.WinSite
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger
                 (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        //public enum AlumnoFileType { Xml = 0, Json = 1, Txt = 2 }
         public AlumnoForm()
         {
             InitializeComponent();
             XmlConfigurator.Configure();
             cboPath.SelectedIndex = 0;
+            cboExtension.SelectedIndex = 1;
         }
 
         private void btAdd_Click(object sender, EventArgs e)
         {
-            //BasicConfigurator.Configure();
-            log.Debug("Entering the btAdd_Click Method.");
-            log.Debug(string.Format(@"Alumno --> ID = {0} | Nombre = {1} | Apellidos = {2} | DNI = {3}",
-                      txtID.Text, txtNombre.Text, txtApellidos.Text, txtDNI.Text));
+            IFileManagerFactory fileFactory = new Infrastucture.Repository.Repositories.FileManagerFactory();
+            IFileManager fManager = fileFactory.GetFileManager(cboExtension.SelectedIndex, cboPath.SelectedIndex);
+            //fManager.CreateFile();
+            //log.Debug("Entering the btAdd_Click Method.");
+            //log.Debug(string.Format(@"Alumno --> ID = {0} | Nombre = {1} | Apellidos = {2} | DNI = {3}",
+            //          txtID.Text, txtNombre.Text, txtApellidos.Text, txtDNI.Text));
 
             var alumnoRepo = new AlumnoRepository();
-            FileManager.PathSelector(cboPath.SelectedIndex);
+            FileManager.GetFilePath(cboPath.SelectedIndex, cboExtension.SelectedIndex);
+            //FileManager.PathSelector(cboPath.SelectedIndex);
             log.Debug("selectedPath = " + FileManager.FilePath);
 
             Alumno alumno = new Alumno(txtID.Text, txtNombre.Text, txtApellidos.Text, txtDNI.Text);

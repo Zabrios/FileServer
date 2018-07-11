@@ -41,6 +41,8 @@ namespace FileServer.Presentation.WinSite
             this.lblDNI = new System.Windows.Forms.Label();
             this.cboPath = new System.Windows.Forms.ComboBox();
             this.lblcbo = new System.Windows.Forms.Label();
+            this.cboExtension = new System.Windows.Forms.ComboBox();
+            this.lblExtension = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtID
@@ -73,9 +75,9 @@ namespace FileServer.Presentation.WinSite
             // 
             // btAdd
             // 
-            this.btAdd.Location = new System.Drawing.Point(190, 183);
+            this.btAdd.Location = new System.Drawing.Point(130, 240);
             this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(100, 34);
+            this.btAdd.Size = new System.Drawing.Size(119, 34);
             this.btAdd.TabIndex = 4;
             this.btAdd.Text = "Add";
             this.btAdd.UseVisualStyleBackColor = true;
@@ -119,7 +121,9 @@ namespace FileServer.Presentation.WinSite
             // 
             // cboPath
             // 
+            this.cboPath.BackColor = System.Drawing.SystemColors.Window;
             this.cboPath.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPath.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboPath.Items.AddRange(new object[] {
             "App.config path",
             "Environment variable path"});
@@ -137,11 +141,35 @@ namespace FileServer.Presentation.WinSite
             this.lblcbo.TabIndex = 10;
             this.lblcbo.Text = "Save path:";
             // 
+            // cboExtension
+            // 
+            this.cboExtension.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboExtension.Items.AddRange(new object[] {
+            "XML",
+            "JSON",
+            "TXT"});
+            this.cboExtension.Location = new System.Drawing.Point(200, 191);
+            this.cboExtension.Name = "cboExtension";
+            this.cboExtension.Size = new System.Drawing.Size(145, 21);
+            this.cboExtension.TabIndex = 11;
+            // 
+            // lblExtension
+            // 
+            this.lblExtension.AutoSize = true;
+            this.lblExtension.Location = new System.Drawing.Point(226, 175);
+            this.lblExtension.Name = "lblExtension";
+            this.lblExtension.Size = new System.Drawing.Size(74, 13);
+            this.lblExtension.TabIndex = 12;
+            this.lblExtension.Text = "File extension:";
+            // 
             // AlumnoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(337, 245);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(369, 286);
+            this.Controls.Add(this.lblExtension);
+            this.Controls.Add(this.cboExtension);
             this.Controls.Add(this.lblcbo);
             this.Controls.Add(this.cboPath);
             this.Controls.Add(this.lblDNI);
@@ -173,6 +201,8 @@ namespace FileServer.Presentation.WinSite
         private System.Windows.Forms.Label lblDNI;
         private System.Windows.Forms.ComboBox cboPath;
         private System.Windows.Forms.Label lblcbo;
+        private ComboBox cboExtension;
+        private Label lblExtension;
     }
 }
 

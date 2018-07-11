@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace FileServer.Infrastucture.Repository
 {
-    public class FileManager 
+    public class FileManager
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger
                 (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public static string FilePath;
+        public static string FileExtension;
 
         /// <summary>
         /// Creates the json file if nonexistent.
@@ -57,25 +58,47 @@ namespace FileServer.Infrastucture.Repository
             return File.Exists(FilePath);
         }
 
+        public static void GetFilePath(int cboInd1, int cboInd2)
+        {
+            FileExtensionSelector(cboInd2);
+            FilePath = PathSelector(cboInd1) + FileExtension;
+        }
+
         public static string PathSelector(int comboIndex)
         {
-            //string filePath;
+            string path;
             switch (comboIndex)
             {
                 case 0:
-                    //filePath = Path.Combine(environmentPath, ConfigurationManager.AppSettings["fileName"]);
-                    FilePath = ConfigurationManager.AppSettings["Path"] + ConfigurationManager.AppSettings["fileName"];
+                    path = ConfigurationManager.AppSettings["Path"] + ConfigurationManager.AppSettings["fileName"];
                     break;
                 case 1:
-                    //var environmentPath = Environment.GetEnvironmentVariable("VUELING_HOME");
-                    FilePath = Environment.ExpandEnvironmentVariables(ConfigurationManager.AppSettings["environmentPathJson"]);
+                    path = Environment.ExpandEnvironmentVariables(ConfigurationManager.AppSettings["environmentPathJson"] + ConfigurationManager.AppSettings["fileName"]);
                     break;
                 default:
-                    FilePath = ConfigurationManager.AppSettings["Path"] + ConfigurationManager.AppSettings["fileName"];
-                    //filePath = ConfigurationManager.AppSettings["Path"];
+                    path = ConfigurationManager.AppSettings["Path"] + ConfigurationManager.AppSettings["fileName"];
                     break;
             }
-            return FilePath;
+            return path;
+        }
+
+        public static void FileExtensionSelector(int comboIndex)
+        {
+            switch (comboIndex)
+            {
+                case 0:
+                    FileExtension = ConfigurationManager.AppSettings.Get("xmlFile");
+                    break;
+                case 1:
+                    FileExtension = ConfigurationManager.AppSettings.Get("jsonFile");
+                    break;
+                case 2:
+                    FileExtension = ConfigurationManager.AppSettings.Get("txtFile");
+                    break;
+                default:
+                    FileExtension = ConfigurationManager.AppSettings.Get("jsonFile");
+                    break;
+            }
         }
 
         public static void WriteToJson(string jsonData)
