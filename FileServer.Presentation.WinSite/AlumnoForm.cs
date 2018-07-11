@@ -33,29 +33,9 @@ namespace FileServer.Presentation.WinSite
 
         private void btAdd_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             IFileManagerFactory fileFactory = new Infrastucture.Repository.Repositories.FileManagerFactory();
             IFileManager fManager = fileFactory.GetFileManager(cboExtension.SelectedIndex, cboPath.SelectedIndex);
-            //fManager.CreateFile();
-            //log.Debug("Entering the btAdd_Click Method.");
-            //log.Debug(string.Format(@"Alumno --> ID = {0} | Nombre = {1} | Apellidos = {2} | DNI = {3}",
-            //          txtID.Text, txtNombre.Text, txtApellidos.Text, txtDNI.Text));
-=======
-            try
-            {
-                int p = 0;
-                var num = 5 / p;
-            }
-            catch(Exception ex)
-            {
-                LogManager.GetLogger("EmailLogger").Error(ex);
 
-            }
-            //BasicConfigurator.Configure();
-            log.Debug("Entering the btAdd_Click Method.");
-            log.Debug(string.Format(@"Alumno --> ID = {0} | Nombre = {1} | Apellidos = {2} | DNI = {3}",
-                      txtID.Text, txtNombre.Text, txtApellidos.Text, txtDNI.Text));
->>>>>>> dbcb3fb4225c35dbe315e265804359c4ed1076c7
 
             var alumnoRepo = new AlumnoRepository();
             FileManager.GetFilePath(cboPath.SelectedIndex, cboExtension.SelectedIndex);

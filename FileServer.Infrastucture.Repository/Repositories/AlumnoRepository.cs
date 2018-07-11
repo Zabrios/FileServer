@@ -25,6 +25,10 @@ namespace FileServer.Infrastucture.Repository
             FManager = fm;
         }
 
+        public AlumnoRepository()
+        {
+        }
+
         public Alumno Add(Alumno alumno)
         {
             List<Alumno> jsonNodes = null;
@@ -52,7 +56,7 @@ namespace FileServer.Infrastucture.Repository
             }
             catch (Exception ex)
             {
-                log.Error(ex);
+                //log.Error(ex);
                 throw ex;
             }
         }
