@@ -37,7 +37,7 @@ namespace FileServer.Presentation.WinSite
             IFileManager fManager = fileFactory.GetFileManager(cboExtension.SelectedIndex, cboPath.SelectedIndex);
 
 
-            var alumnoRepo = new AlumnoRepository();
+            var alumnoRepo = new AlumnoRepository(fManager);
             FileManager.GetFilePath(cboPath.SelectedIndex, cboExtension.SelectedIndex);
             //FileManager.PathSelector(cboPath.SelectedIndex);
             log.Debug("selectedPath = " + FileManager.FilePath);

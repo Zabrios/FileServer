@@ -58,7 +58,6 @@
     <Compile Include="Repositories\JsonFileManager.cs" />
     <Compile Include="Repositories\TxtFileManager.cs" />
     <Compile Include="Repositories\XmlFileManager.cs" />
-    <Compile Include="Repositories\Xmlwriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FileServer.Common.Model\FileServer.Common.Model.csproj">

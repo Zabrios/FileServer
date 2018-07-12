@@ -13,6 +13,11 @@ namespace FileServer.Common.Model
         public string Apellidos { get; set; }
         public string DNI { get; set; }
 
+        public Alumno()
+        {
+
+        }
+
         public Alumno(string id, string nombre, string apellidos, string dNI)
         {
             Id = id;
@@ -35,7 +40,7 @@ namespace FileServer.Common.Model
 
         public override string ToString()
         {
-            return string.Format(@"Id: {0}, Nombre: {1}, Apellidos: {2}, DNI: {3}",
+            return string.Format(@"{0},{1},{2},{3}",
                                    Id, Nombre, Apellidos, DNI);
         }
 

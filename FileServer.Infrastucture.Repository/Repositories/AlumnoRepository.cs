@@ -31,32 +31,12 @@ namespace FileServer.Infrastucture.Repository
 
         public Alumno Add(Alumno alumno)
         {
-            List<Alumno> jsonNodes = null;
-
-            //log.Debug("alumno " + alumno.ToString());
-            //log.Debug("path = " + FileManager.FilePath);
-            FManager.CreateFile();
-            //FileManager.CreateJSONFileIfNonexistent();
-            var data = FileManager.RetrieveJSONData();
             try
             {
-                //log.Debug("Recuperando lista de objetos JSON.");
-                jsonNodes = JsonConvert.DeserializeObject<List<Alumno>>(data);
-                if (jsonNodes == null)
-                {
-                    //log.Debug("Fichero vacío. No se han recuperado alumnos. Inicializando lista nueva.");
-                    jsonNodes = new List<Alumno>();
-                }
-
-                jsonNodes.Add(alumno);
-
-                var resultJSONList = JsonConvert.SerializeObject(jsonNodes, Formatting.Indented);
-                FileManager.WriteToJson(resultJSONList);
-                return JsonConvert.DeserializeObject<List<Alumno>>(FileManager.RetrieveJSONData()).Last();
+                return FManager.ProcessAlumnoData(alumno);
             }
             catch (Exception ex)
             {
-                //log.Error(ex);
                 throw ex;
             }
         }

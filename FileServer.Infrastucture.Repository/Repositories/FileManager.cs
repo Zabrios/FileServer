@@ -72,7 +72,7 @@ namespace FileServer.Infrastucture.Repository
                     path = ConfigurationManager.AppSettings["Path"] + ConfigurationManager.AppSettings["fileName"];
                     break;
                 case 1:
-                    path = Environment.ExpandEnvironmentVariables(ConfigurationManager.AppSettings["environmentPathJson"] + ConfigurationManager.AppSettings["fileName"]);
+                    path = Environment.ExpandEnvironmentVariables(ConfigurationManager.AppSettings["environmentPath"] + ConfigurationManager.AppSettings["fileName"]);
                     break;
                 default:
                     path = ConfigurationManager.AppSettings["Path"] + ConfigurationManager.AppSettings["fileName"];

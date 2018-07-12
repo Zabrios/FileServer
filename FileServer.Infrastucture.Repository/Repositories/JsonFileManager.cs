@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FileServer.Common.Model;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
@@ -41,12 +43,51 @@ namespace FileServer.Infrastucture.Repository.Repositories
 
         public string RetrieveData()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var jsonData = File.ReadAllText(FilePath);
+                return jsonData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void WriteToFile(string fileData)
         {
-            throw new NotImplementedException();
+            try
+            {
+                File.WriteAllText(FilePath, fileData);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Alumno ProcessAlumnoData(Alumno alumno)
+        {
+            List<Alumno> jsonNodes = null;
+            try
+            {
+                CreateFile();
+                var data = RetrieveData();
+                jsonNodes = JsonConvert.DeserializeObject<List<Alumno>>(data);
+                if (jsonNodes == null)
+                {
+                    jsonNodes = new List<Alumno>();
+                }
+                jsonNodes.Add(alumno);
+
+                var resultJSONList = JsonConvert.SerializeObject(jsonNodes, Formatting.Indented);
+                WriteToFile(resultJSONList);
+                return JsonConvert.DeserializeObject<List<Alumno>>(FileManager.RetrieveJSONData()).Last();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

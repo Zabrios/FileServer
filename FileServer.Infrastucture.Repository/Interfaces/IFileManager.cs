@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileServer.Common.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,6 @@ namespace FileServer.Infrastucture.Repository.Interfaces
         bool FileExists();
         void WriteToFile(string fileData);
         string RetrieveData();
+        Alumno ProcessAlumnoData(Alumno alumno);
     }
 }
