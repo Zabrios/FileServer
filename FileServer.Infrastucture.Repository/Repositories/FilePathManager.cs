@@ -12,7 +12,6 @@ namespace FileServer.Infrastucture.Repository.Repositories
         public static string FilePath;
         public static string FileExtension;
         
-
         public static void GetFilePath(int cboInd1, int cboInd2)
         {
             FileExtensionSelector(cboInd2);

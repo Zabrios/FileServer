@@ -15,14 +15,10 @@ namespace FileServer.Infrastucture.Repository
 {
     public class AlumnoRepository : IAlumnoRepository
     {
-        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger
-        //(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         public FileManager FManager { get; set; }
 
         public AlumnoRepository(AbstractFileFactory factory, int fileType, int filePathType)
         {
-            //log4net.Config.XmlConfigurator.Configure();
             FManager = factory.GetFileManager(fileType, filePathType);
         }
 

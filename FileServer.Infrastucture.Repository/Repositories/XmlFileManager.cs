@@ -36,10 +36,7 @@ namespace FileServer.Infrastucture.Repository.Repositories
                     doc.AppendChild(root);
                     XmlComment comment = doc.CreateComment("Alumno XML File");
                     root.AppendChild(comment);
-                    //doc.LoadXml("<Alumnos></Alumnos>");
-                    //XElement root = new XElement("Alumnos");
                     doc.Save(FilePath);
-                    //using (XmlWriter writer = XmlWriter.Create(FilePath)) { }
                 }
                 catch (Exception ex)
                 {
@@ -60,23 +57,14 @@ namespace FileServer.Infrastucture.Repository.Repositories
                 XDocument doc = XDocument.Load(FilePath);
                 XElement root = doc.Root;
                 XElement lastNode = (XElement)root.LastNode;
-                //Console.WriteLine(lastNode.ToString());
                 if(lastNode == null)
                 {
                     return null;
                 }
                 else
                 {
-                    Console.WriteLine(lastNode.ToString());
                     return lastNode.ToString();
                 }
-                //XmlSerializer serializer = new XmlSerializer(typeof(Alumno));
-                //FileStream fs = new FileStream(FilePath, FileMode.Open);
-                //XmlReader reader = XmlReader.Create(fs);
-                //Alumno al;
-                //al = (Alumno)serializer.Deserialize(reader);
-                //fs.Close();
-                //return null;
             }
             catch (Exception ex)
             {
@@ -103,7 +91,6 @@ namespace FileServer.Infrastucture.Repository.Repositories
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -131,7 +118,6 @@ namespace FileServer.Infrastucture.Repository.Repositories
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

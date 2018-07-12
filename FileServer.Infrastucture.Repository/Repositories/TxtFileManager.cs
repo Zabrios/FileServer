@@ -80,8 +80,6 @@ namespace FileServer.Infrastucture.Repository.Repositories
                 return alumnoRetorno;
             }
 
-            //foreach (var myString in data.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
-
             catch (Exception ex)
             {
                 throw ex;

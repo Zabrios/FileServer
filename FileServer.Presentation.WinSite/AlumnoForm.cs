@@ -13,6 +13,7 @@ using System.Configuration;
 using log4net;
 using log4net.Config;
 using FileServer.Infrastucture.Repository;
+using Serilog;
 
 namespace FileServer.Presentation.WinSite
 {
@@ -24,11 +25,15 @@ namespace FileServer.Presentation.WinSite
             InitializeComponent();
             cboPath.SelectedIndex = 0;
             cboExtension.SelectedIndex = 1;
+            //Log.Logger = new LoggerConfiguration()
+            //                .WriteTo.File("log.txt",
+            //                rollOnFileSizeLimit: true,
+            //                fileSizeLimitBytes: 20_971_520).CreateLogger();
         }
 
         private void btAdd_Click(object sender, EventArgs e)
         {
-
+            Log.Debug("Entering btAdd_Click");
             AbstractFileFactory fFactory = new FileManagerFactory();
             var alumnoRepo = new AlumnoRepository(fFactory, cboExtension.SelectedIndex, cboPath.SelectedIndex);
 
