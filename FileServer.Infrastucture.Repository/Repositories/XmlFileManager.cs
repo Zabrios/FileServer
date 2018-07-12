@@ -12,11 +12,10 @@ using FileServer.Common.Model;
 
 namespace FileServer.Infrastucture.Repository.Repositories
 {
-    public class XmlFileManager : Interfaces.IFileManager
+    public class XmlFileManager : FileManager
     {
-        public string FileExtension { get; set; }
-        public string FilePath { get; set; }
-        public object Xelement { get; private set; }
+        public override string FileExtension { get; set; }
+        public override string FilePath { get; set; }
 
         public XmlFileManager(int filePathType)
         {
@@ -24,7 +23,7 @@ namespace FileServer.Infrastucture.Repository.Repositories
             FilePath = FilePathManager.PathSelector(filePathType) + FileExtension;
         }
 
-        public void CreateFile()
+        public override void CreateFile()
         {
             if (!FileExists())
             {
@@ -49,12 +48,12 @@ namespace FileServer.Infrastucture.Repository.Repositories
             }
         }
 
-        public bool FileExists()
+        public override bool FileExists()
         {
             return File.Exists(FilePath);
         }
 
-        public string RetrieveData()
+        public override string RetrieveData()
         {
             try
             {
@@ -86,7 +85,7 @@ namespace FileServer.Infrastucture.Repository.Repositories
             }
         }
 
-        public void WriteToFile(string fileData)
+        public override void WriteToFile(string fileData)
         {
             try
             {
@@ -109,7 +108,7 @@ namespace FileServer.Infrastucture.Repository.Repositories
             }
         }
 
-        public Alumno ProcessAlumnoData(Alumno alumno)
+        public override Alumno ProcessAlumnoData(Alumno alumno)
         {
             try
             {

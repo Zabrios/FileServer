@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FileServer.Infrastucture.Repository.Interfaces;
 
 namespace FileServer.Infrastucture.Repository.Repositories
 {
-    public class FileManagerFactory : IFileManagerFactory
+    public class FileManagerFactory : AbstractFileFactory
     {
-        public IFileManager GetFileManager(int fileType, int filePathType)
+        public override FileManager GetFileManager(int fileType, int filePathType)
         {
             switch (fileType)
             {
@@ -21,7 +20,7 @@ namespace FileServer.Infrastucture.Repository.Repositories
                     return new TxtFileManager(filePathType);
                 default:
                     return new JsonFileManager(filePathType);
-            } 
+            }
         }
     }
 }

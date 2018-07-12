@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 using FileServer.Common.Model;
 using Newtonsoft.Json;
 using log4net;
-using FileServer.Infrastucture.Repository.Interfaces;
+//using FileServer.Infrastucture.Repository.Interfaces;
+using FileServer.Infrastucture.Repository.Repositories;
 
 namespace FileServer.Infrastucture.Repository
 {
@@ -17,12 +18,12 @@ namespace FileServer.Infrastucture.Repository
         //private static readonly log4net.ILog log = log4net.LogManager.GetLogger
         //(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public IFileManager FManager { get; set; }
+        public FileManager FManager { get; set; }
 
-        public AlumnoRepository(IFileManager fm)
+        public AlumnoRepository(AbstractFileFactory factory, int fileType, int filePathType)
         {
             //log4net.Config.XmlConfigurator.Configure();
-            FManager = fm;
+            FManager = factory.GetFileManager(fileType, filePathType);
         }
 
         public AlumnoRepository()

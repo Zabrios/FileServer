@@ -47,10 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IFileManager.cs" />
     <Compile Include="Interfaces\IAlumnoRepository.cs" />
-    <Compile Include="Interfaces\IFileManagerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AbstractFileFactory.cs" />
     <Compile Include="Repositories\AlumnoRepository.cs" />
     <Compile Include="Repositories\FileManager.cs" />
     <Compile Include="Repositories\FileManagerFactory.cs" />

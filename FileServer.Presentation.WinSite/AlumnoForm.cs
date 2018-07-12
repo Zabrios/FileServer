@@ -12,40 +12,28 @@ using System.Windows.Forms;
 using System.Configuration;
 using log4net;
 using log4net.Config;
-using FileServer.Infrastucture.Repository.Interfaces;
 using FileServer.Infrastucture.Repository;
 
 namespace FileServer.Presentation.WinSite
 {
     public partial class AlumnoForm : Form
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
-                (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        //public enum AlumnoFileType { Xml = 0, Json = 1, Txt = 2 }
         public AlumnoForm()
         {
             InitializeComponent();
-            XmlConfigurator.Configure();
             cboPath.SelectedIndex = 0;
             cboExtension.SelectedIndex = 1;
         }
 
         private void btAdd_Click(object sender, EventArgs e)
         {
-            IFileManagerFactory fileFactory = new Infrastucture.Repository.Repositories.FileManagerFactory();
-            IFileManager fManager = fileFactory.GetFileManager(cboExtension.SelectedIndex, cboPath.SelectedIndex);
 
-
-            var alumnoRepo = new AlumnoRepository(fManager);
-            FileManager.GetFilePath(cboPath.SelectedIndex, cboExtension.SelectedIndex);
-            //FileManager.PathSelector(cboPath.SelectedIndex);
-            log.Debug("selectedPath = " + FileManager.FilePath);
+            AbstractFileFactory fFactory = new FileManagerFactory();
+            var alumnoRepo = new AlumnoRepository(fFactory, cboExtension.SelectedIndex, cboPath.SelectedIndex);
 
             Alumno alumno = new Alumno(txtID.Text, txtNombre.Text, txtApellidos.Text, txtDNI.Text);
             var alumnoRetorno = alumnoRepo.Add(alumno);
-
-            log.Debug("Alumno retorno --> " + alumnoRetorno.ToString());
 
             if (alumnoRetorno.Equals(alumno))
             {
@@ -53,9 +41,7 @@ namespace FileServer.Presentation.WinSite
             }
             else
             {
-                log.Error("Error al añadir un alumno.");
                 MessageBox.Show("Error al añadir un alumno.", "AlumnoJSON");
-
             }
             txtID.Clear(); txtNombre.Clear(); txtApellidos.Clear(); txtDNI.Clear();
         }
